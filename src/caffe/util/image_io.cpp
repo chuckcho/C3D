@@ -132,7 +132,8 @@ bool ReadVideoToVolumeDatum(const char* filename, const int start_frm, const int
 
 	cap.set(CV_CAP_PROP_POS_FRAMES, use_start_frm);
 	int end_frm = use_start_frm + length * sampling_rate;
-	CHECK_LE(end_frm, num_of_frames) << "end frame must less or equal to num of frames";
+	//CHECK_LE(end_frm, num_of_frames) << "end frame must less or equal to num of frames";
+  CHECK_LE(end_frm-1, num_of_frames) << "end frame-1 must less or equal to num of frames (filename=" << filename << ")";
 
 	for (int i=use_start_frm; i<end_frm; i+=sampling_rate){
 		if (sampling_rate > 1)

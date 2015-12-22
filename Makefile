@@ -118,7 +118,7 @@ LIBRARIES := cudart cublas curand \
 	glog protobuf leveldb snappy \
 	boost_system \
 	hdf5_hl hdf5 \
-	opencv_core opencv_highgui opencv_imgproc #\
+	opencv_core opencv_highgui opencv_imgproc opencv_videoio opencv_imgcodecs #\
 	#mat mx
 PYTHON_LIBRARIES := boost_python python2.7
 WARNINGS := -Wall
