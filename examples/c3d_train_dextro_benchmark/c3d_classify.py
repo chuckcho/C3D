@@ -1,14 +1,14 @@
-import glob
 import os
 import numpy as np
 import math
 import cv2
-import scipy.io as sio
 
-def c3d_classify(vid_name, image_mean, net, start_frame=0, num_frames=0):
+def c3d_classify(vid_name, image_mean, net, start_frame):
+    ''' start_frame is 0-based whereas the first image file is image_00001.jpg '''
 
     c3d_depth = 16 # num of frames
     num_categories = 131
+    augment_input = False
 
     # selection
     dims = (128,171,3,c3d_depth)
@@ -16,10 +16,9 @@ def c3d_classify(vid_name, image_mean, net, start_frame=0, num_frames=0):
     rgb_flip = np.zeros(shape=dims, dtype=np.float64)
 
     for i in range(c3d_depth):
-        img_file = os.path.join(vid_name, 'image_{0:05d}.jpg'.format(i+1))
-        #print "[Info] img_file={}".format(img_file)
+        img_file = os.path.join(vid_name, 'image_{0:05d}.jpg'.format(start_frame+i+1))
+        print "[info] vid_name={}, start_frame={}, img_file={}".format(vid_name, start_frame, img_file)
         img = cv2.imread(img_file, cv2.IMREAD_UNCHANGED)
-        #print "[Info] img.shape={}".format(img.shape)
         img = cv2.resize(img, dims[1::-1])
         rgb[:,:,:,i] = img
         rgb_flip[:,:,:,i] = img[:,::-1,:]
@@ -27,30 +26,37 @@ def c3d_classify(vid_name, image_mean, net, start_frame=0, num_frames=0):
     # substract mean
     image_mean = np.transpose(image_mean, (2,3,1,0))
     rgb -= image_mean
-    rgb_flip -= image_mean
+    rgb_flip -= image_mean[:,::-1,:,:]
 
-    # crop
-    rgb_1 = rgb[:112, :112, :,:]
-    rgb_2 = rgb[:112, -112:, :,:]
-    rgb_3 = rgb[8:120, 30:142, :,:]
-    rgb_4 = rgb[-112:, :112, :,:]
-    rgb_5 = rgb[-112:, -112:, :,:]
-    rgb_f_1 = rgb_flip[:112, :112, :,:]
-    rgb_f_2 = rgb_flip[:112, -112:, :,:]
-    rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
-    rgb_f_4 = rgb_flip[-112:, :112, :,:]
-    rgb_f_5 = rgb_flip[-112:, -112:, :,:]
+    if augment_input:
+        # crop (112-by-112)
+        rgb_1 = rgb[:112, :112, :,:]
+        rgb_2 = rgb[:112, -112:, :,:]
+        rgb_3 = rgb[8:120, 30:142, :,:]
+        rgb_4 = rgb[-112:, :112, :,:]
+        rgb_5 = rgb[-112:, -112:, :,:]
+        rgb_f_1 = rgb_flip[:112, :112, :,:]
+        rgb_f_2 = rgb_flip[:112, -112:, :,:]
+        rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
+        rgb_f_4 = rgb_flip[-112:, :112, :,:]
+        rgb_f_5 = rgb_flip[-112:, -112:, :,:]
 
-    rgb = np.concatenate((rgb_1[...,np.newaxis],
-                          rgb_2[...,np.newaxis],
-                          rgb_3[...,np.newaxis],
-                          rgb_4[...,np.newaxis],
-                          rgb_5[...,np.newaxis],
-                          rgb_f_1[...,np.newaxis],
-                          rgb_f_2[...,np.newaxis],
-                          rgb_f_3[...,np.newaxis],
-                          rgb_f_4[...,np.newaxis],
-                          rgb_f_5[...,np.newaxis]), axis=4)
+        rgb = np.concatenate((rgb_1[...,np.newaxis],
+                              rgb_2[...,np.newaxis],
+                              rgb_3[...,np.newaxis],
+                              rgb_4[...,np.newaxis],
+                              rgb_5[...,np.newaxis],
+                              rgb_f_1[...,np.newaxis],
+                              rgb_f_2[...,np.newaxis],
+                              rgb_f_3[...,np.newaxis],
+                              rgb_f_4[...,np.newaxis],
+                              rgb_f_5[...,np.newaxis]), axis=4)
+    else:
+        rgb_3 = rgb[8:120, 30:142, :,:]
+        rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
+        rgb = np.concatenate((rgb_3[...,np.newaxis],
+                              rgb_f_3[...,np.newaxis]), axis=4)
+
     #rgb = np.transpose(rgb, (1,0,2,3))
     #print "net.blobs['data']={}".format(net.blobs['data'])
     #print "net.blobs['data'].data={}".format(net.blobs['data'].data)
