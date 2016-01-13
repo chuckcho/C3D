@@ -8,14 +8,16 @@ layers {
     source: "../c3d_finetuning/test_01.lst"
     use_image: true
     mean_file: "ucf101_train_mean.binaryproto"
+    #mean_file: "../c3d_finetuning/train01_16_128_171_mean.binaryproto"
     batch_size: 30
+    #batch_size: 2
     crop_size: 112
     mirror: false
     show_data: 0
     new_height: 128
     new_width: 171
     new_length: 16
-    shuffle: true
+    shuffle: false
   }
 }
 # ----------- 1st layer group ---------------
@@ -340,16 +342,17 @@ layers {
     }
   }
 }
+
 layers {
   name: "prob"
   type: SOFTMAX
   bottom: "fc8"
   top: "prob"
 }
-layers {
-  top: "accuracy"
-  name: "accuracy"
-  type: ACCURACY
-  bottom: "prob"
-  bottom: "label"
-}
+#layers {
+#  top: "accuracy"
+#  name: "accuracy"
+#  type: ACCURACY
+#  bottom: "prob"
+#  bottom: "label"
+#}
