@@ -18,7 +18,7 @@ layers {
     new_height: 128
     new_width: 171
     new_length: 16
-    shuffle: true
+    shuffle: false
   }
 }
 # ----------- 1st layer group ---------------
