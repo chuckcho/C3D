@@ -1,0 +1,6 @@
+*.solverstate
+*_iter_[0-9]*
+*.pyc
+*.so
+*_c3d.txt
+*_log.txt
