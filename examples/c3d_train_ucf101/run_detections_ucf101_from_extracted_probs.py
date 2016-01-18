@@ -143,8 +143,9 @@ def main():
     out = open(output_file, "w", bufsize)
 
     # read test video list
-    test_video_list = '../c3d_finetuning/test_01.lst'
+    #test_video_list = '../c3d_finetuning/test_01.lst'
     #test_video_list = './test_54pct_accuracy.lst'
+    test_video_list = './test_100pct_accuracy.lst'
     import csv
     reader = csv.reader(open(test_video_list), delimiter=" ")
 

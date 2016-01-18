@@ -3,8 +3,30 @@ import numpy as np
 import math
 import cv2
 
-def c3d_classify(vid_name, image_mean, net, start_frame, num_categories, batch_size=2, c3d_depth=16, prob_layer='prob', multi_crop=False):
+def c3d_classify(
+        vid_name,
+        image_mean,
+        net,
+        start_frame,
+        prob_layer='prob',
+        multi_crop=False
+        ):
     ''' start_frame is 1-based and the first image file is image_0001.jpg '''
+
+    #print "net.blobs={}".format(
+    #    net.blobs
+    #)
+    #print "net.blobs['prob'].data.shape={}".format(
+    #    net.blobs['prob'].data.shape
+    #)
+    #print "net.blobs['data'].data.shape={}".format(
+    #    net.blobs['data'].data.shape
+    #)
+
+    # infer net params
+    batch_size = net.blobs['data'].data.shape[0]
+    c3d_depth = net.blobs['data'].data.shape[2]
+    num_categories = net.blobs['prob'].data.shape[1]
 
     # selection
     dims = (128,171,3,c3d_depth)
@@ -23,8 +45,8 @@ def c3d_classify(vid_name, image_mean, net, start_frame, num_categories, batch_s
         rgb_flip[:,:,:,i] = img[:,::-1,:]
 
     # substract mean
-    image_mean = np.transpose(image_mean, (2,3,1,0))
-    #image_mean = np.transpose(image_mean, (2,3,0,1))
+    #print "image_mean.shape={}".format(image_mean.shape)
+    image_mean = np.transpose(np.squeeze(image_mean), (2,3,0,1))
     rgb -= image_mean
     rgb_flip -= image_mean[:,::-1,:,:]
 
@@ -54,9 +76,9 @@ def c3d_classify(vid_name, image_mean, net, start_frame, num_categories, batch_s
     else:
         rgb_3 = rgb[8:120, 30:142, :,:]
         rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
-        #rgb = np.concatenate((rgb_3[...,np.newaxis],
-        #                      rgb_f_3[...,np.newaxis]), axis=4)
-        rgb = rgb_3[...,np.newaxis]
+        rgb = np.concatenate((rgb_3[...,np.newaxis],
+                              rgb_f_3[...,np.newaxis]), axis=4)
+        #rgb = rgb_3[...,np.newaxis]
 
     #rgb = np.transpose(rgb, (1,0,2,3))
     #print "net.blobs['data']={}".format(net.blobs['data'])
@@ -70,10 +92,16 @@ def c3d_classify(vid_name, image_mean, net, start_frame, num_categories, batch_s
     prediction = np.zeros((num_categories,rgb.shape[4]))
 
     if rgb.shape[4] < batch_size:
+        print "rgb.shape[4]={}, batch_size={}".format(rgb.shape[4], batch_size)
         net.blobs['data'].data[:rgb.shape[4],:,:,:,:] = np.transpose(rgb, (4,2,3,0,1))
+        net.blobs['data'].data[rgb.shape[4]:,:,:,:,:] = np.zeros(
+                (batch_size-rgb.shape[4], rgb.shape[2], rgb.shape[3], rgb.shape[0], rgb.shape[1])
+                )
         output = net.forward()
         #print "output={}".format(output)
         #print "output[prob_layer].shape={}".format(output[prob_layer].shape)
+        #print "np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:])).shape={}".format(
+        #        np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:])).shape )
         prediction = np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:]))
     else:
         num_batches = int(math.ceil(float(rgb.shape[4])/batch_size))
@@ -82,7 +110,10 @@ def c3d_classify(vid_name, image_mean, net, start_frame, num_categories, batch_s
             span = range(batch_size*bb, min(rgb.shape[4],batch_size*(bb+1)))
             net.blobs['data'].data[...] = np.transpose(rgb[:,:,:,:,span], (4,2,3,0,1))
             output = net.forward()
-            prediction[:, span] = np.transpose(np.squeeze(output[prob_layer]))
+            #print "output[prob_layer].shape={}".format(
+            #        output[prob_layer].shape
+            #        )
+            prediction[:, span] = np.transpose(np.squeeze(output[prob_layer], axis=(2,3,4)))
 
     return prediction
 
@@ -97,16 +128,14 @@ layers {
     use_image: false
     mean_file: "train01_16_128_171_mean.binaryproto"
     use_temporal_jitter: false
-    #batch_size: 30
-    #batch_size: 2
-    batch_size: 2
+    batch_size: 50
     crop_size: 112
     mirror: false
     show_data: 0
     new_height: 128
     new_width: 171
     new_length: 16
-    shuffle: true
+    shuffle: false
   }
 }
 '''

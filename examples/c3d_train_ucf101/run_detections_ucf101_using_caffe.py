@@ -164,10 +164,7 @@ def main():
     top_N = 5
 
     # network param
-    batch_size = 30
     prob_layer = 'prob'
-    c3d_depth = 16
-    num_categories = 101
 
     for count, video_and_category in enumerate(reader):
         (video_name, start_frame, category_id) = video_and_category
@@ -191,22 +188,14 @@ def main():
             blob = caffe.proto.caffe_pb2.BlobProto()
             data = open(mean_file,'rb').read()
             blob.ParseFromString(data)
-            #print "blob={}".format(blob)
-            blob.num = c3d_depth
             image_mean = np.array(caffe.io.blobproto_to_array(blob))
-            #print "image_mean.shape=".format(image_mean.shape)
-
-            #image_mean = image_mean.reshape(3,16,128,171)
             prediction = c3d_classify(
                     vid_name=video_name,
                     image_mean=image_mean,
-#                    image_mean=mean_file,
                     net=net,
                     start_frame=start_frame,
-                    num_categories=num_categories,
-                    batch_size=batch_size,
-                    c3d_depth=c3d_depth,
-                    prob_layer=prob_layer
+                    prob_layer=prob_layer,
+                    multi_crop=False
                     )
             if prediction.ndim == 2:
                 avg_pred = np.mean(prediction, axis=1)
@@ -241,8 +230,8 @@ layers {
   top: "label"
   image_data_param {
     source: "dextro_benchmark_val_flow_smaller.txt"
-    use_image: false
-    mean_file: "train01_16_128_171_mean.binaryproto"
+    use_image: true
+    mean_file: "ucf101_train_mean.binaryproto"
     use_temporal_jitter: false
     #batch_size: 30
     #batch_size: 2
@@ -253,7 +242,7 @@ layers {
     new_height: 128
     new_width: 171
     new_length: 16
-    shuffle: true
+    shuffle: false
   }
 }
 '''
