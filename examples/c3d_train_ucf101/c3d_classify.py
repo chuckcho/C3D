@@ -30,16 +30,20 @@ def c3d_classify(
 
     # selection
     dims = (128,171,3,c3d_depth)
-    rgb = np.zeros(shape=dims, dtype=np.float64)
-    rgb_flip = np.zeros(shape=dims, dtype=np.float64)
+    rgb = np.zeros(shape=dims, dtype=np.float32)
+    rgb_flip = np.zeros(shape=dims, dtype=np.float32)
 
     for i in range(c3d_depth):
         #img_file = os.path.join(vid_name, 'image_{0:05d}.jpg'.format(start_frame+i+1))
+
         img_file = os.path.join(vid_name, 'image_{0:04d}.jpg'.format(start_frame+i))
+        #img_file = os.path.join(vid_name, 'image_{0:04d}.jpg'.format(i+1))
+
         #print "[info] vid_name={}, start_frame={}, img_file={}".format(vid_name, start_frame, img_file)
         img = cv2.imread(img_file, cv2.IMREAD_UNCHANGED)
         #print "[info] img.shape={}".format(img.shape)
         img = cv2.resize(img, dims[1::-1])
+        #print "img.min(),max()=({},{})".format(img.min(), img.max())
         #print "[info] img.shape={}".format(img.shape)
         rgb[:,:,:,i] = img
         rgb_flip[:,:,:,i] = img[:,::-1,:]
@@ -49,6 +53,7 @@ def c3d_classify(
     image_mean = np.transpose(np.squeeze(image_mean), (2,3,0,1))
     rgb -= image_mean
     rgb_flip -= image_mean[:,::-1,:,:]
+    #print "image_mean.min(),max()=({},{})".format(image_mean.min(), image_mean.max())
 
     if multi_crop:
         # crop (112-by-112)
@@ -85,24 +90,25 @@ def c3d_classify(
     #print "net.blobs['data'].data={}".format(net.blobs['data'].data)
     #print "net.blobs['data'].data.shape={}".format(net.blobs['data'].data.shape)
 
-    #test_blob = np.zeros(shape=(2,3,16,112,112), dtype=np.float64)
+    #test_blob = np.zeros(shape=(2,3,16,112,112), dtype=np.float32)
     #net.blobs['data'].data[...] = test_blob
     #output = net.forward()
 
     prediction = np.zeros((num_categories,rgb.shape[4]))
 
     if rgb.shape[4] < batch_size:
-        print "rgb.shape[4]={}, batch_size={}".format(rgb.shape[4], batch_size)
+        #print "rgb.shape[4]={}, batch_size={}".format(rgb.shape[4], batch_size)
         net.blobs['data'].data[:rgb.shape[4],:,:,:,:] = np.transpose(rgb, (4,2,3,0,1))
-        net.blobs['data'].data[rgb.shape[4]:,:,:,:,:] = np.zeros(
-                (batch_size-rgb.shape[4], rgb.shape[2], rgb.shape[3], rgb.shape[0], rgb.shape[1])
-                )
+        #print "rgb.mean,std=({},{})".format(rgb.mean(), rgb.std())
+        #net.blobs['data'].data[rgb.shape[4]:,:,:,:,:] = np.zeros(
+        #        (batch_size-rgb.shape[4], rgb.shape[2], rgb.shape[3], rgb.shape[0], rgb.shape[1])
+        #        )
         output = net.forward()
         #print "output={}".format(output)
         #print "output[prob_layer].shape={}".format(output[prob_layer].shape)
         #print "np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:])).shape={}".format(
         #        np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:])).shape )
-        prediction = np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:]))
+        prediction = np.transpose(np.squeeze(output[prob_layer][:rgb.shape[4],:,:,:,:], axis=(2,3,4)))
     else:
         num_batches = int(math.ceil(float(rgb.shape[4])/batch_size))
         #print "prediction.shape={}, rgb.shape={}, num_batches={}".format(prediction.shape, rgb.shape, num_batches)
