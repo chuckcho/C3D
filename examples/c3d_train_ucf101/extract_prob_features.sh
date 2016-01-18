@@ -3,8 +3,8 @@ GLOG_logtosterr=1 \
   ./conv3d_ucf101_feature_extraction.prototxt \
   ./conv3d_ucf101_iter_50000 \
   0 \
-  40 \
-  100000 \
+  50 \
+  41822 \
   ./output.lst \
   prob
 

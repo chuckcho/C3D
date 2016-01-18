@@ -131,7 +131,7 @@ def main():
     force_save = False
 
     ucf_categories = get_ucf_categories()
-    output_file = 'ucf101_c3d_performance.csv'
+    output_file = 'ucf101_c3d_performance_using_caffe.csv'
     cwd = os.path.dirname(os.path.realpath(__file__))
     result_path = 'ucf101_c3d_intermediate_results'
 
@@ -141,6 +141,8 @@ def main():
     # model
     model_def_file = 'conv3d_ucf101_test.prototxt'
     model_file = 'conv3d_ucf101_iter_50000'
+    #mean_file = 'ucf101_train_mean.npy'
+    mean_file = './ucf101_train_mean.binaryproto'
     net = caffe.Net(model_def_file, model_file)
 
     # caffe init
@@ -148,9 +150,13 @@ def main():
     net.set_device(gpu_id)
     net.set_mode_gpu()
     net.set_phase_test()
+    #net.set_mean('data', '../python/caffe/imagenet/ilsvrc_2012_mean.npy')
+    #net.set_channel_swap('data', (2,1,0))
+    #net.set_input_scale('data', 255.0)
 
     # read test video list
-    test_video_list = '../c3d_finetuning/test_01.lst'
+    #test_video_list = '../c3d_finetuning/test_01.lst'
+    test_video_list = './test_100pct_accuracy.lst'
     import csv
     reader = csv.reader(open(test_video_list), delimiter=" ")
 
@@ -159,6 +165,9 @@ def main():
 
     # network param
     batch_size = 30
+    prob_layer = 'prob'
+    c3d_depth = 16
+    num_categories = 101
 
     for count, video_and_category in enumerate(reader):
         (video_name, start_frame, category_id) = video_and_category
@@ -179,44 +188,47 @@ def main():
             print "[Info] intermediate output file={} has been already saved. Skipping...".format(result)
             avg_pred = np.loadtxt(result)
         else:
-            mean_file = 'ucf101_train_mean.binaryproto'
             blob = caffe.proto.caffe_pb2.BlobProto()
             data = open(mean_file,'rb').read()
             blob.ParseFromString(data)
-            blob.num = 16
+            #print "blob={}".format(blob)
+            blob.num = c3d_depth
             image_mean = np.array(caffe.io.blobproto_to_array(blob))
+            #print "image_mean.shape=".format(image_mean.shape)
+
+            #image_mean = image_mean.reshape(3,16,128,171)
             prediction = c3d_classify(
                     vid_name=video_name,
                     image_mean=image_mean,
+#                    image_mean=mean_file,
                     net=net,
                     start_frame=start_frame,
-                    num_categories=101,
+                    num_categories=num_categories,
                     batch_size=batch_size,
-                    c3d_depth=16,
-                    prob_layer='prob'
+                    c3d_depth=c3d_depth,
+                    prob_layer=prob_layer
                     )
-            avg_pred = np.mean(prediction, axis=1)
-            print "prediction.shape={}, avg_pred.shape={}".format(prediction.shape, avg_pred.shape)
+            if prediction.ndim == 2:
+                avg_pred = np.mean(prediction, axis=1)
+            else:
+                avg_pred = prediction
+            #print "prediction.shape={}, avg_pred.shape={}".format(prediction.shape, avg_pred.shape)
             #avg_pred_fc8 = np.mean(prediction, axis=1)
             #avg_pred = softmax(avg_pred_fc8)
             np.savetxt(result, avg_pred, delimiter=",")
-        sorted_indices = sorted(range(len(avg_pred)), key=lambda k: avg_pred[k])
+        sorted_indices = sorted(range(len(avg_pred)), key=lambda k: -avg_pred[k])
         print "-"*5
         for x in range(top_N):
-            index = sorted_indices[-x-1]
+            index = sorted_indices[x]
             prob = round(avg_pred[index]*100,10)
             if category.lower() == ucf_categories[index].lower():
                 hit_or_miss = '!!!!!!!!!!!!!!!  hit !!!!!!!!!!!!!!!'
             else:
                 hit_or_miss = ''
             print "[Info] GT:{}, c3d detected:{} (p={}%): {}".format(category, ucf_categories[index], prob, hit_or_miss)
-
-        c3d_rank = len(ucf_categories) - sorted_indices.index(category_id)
-
-        out.write("{0}_frame{1:05d}, {2}\n".format(video_id, start_frame, c3d_rank))
-
+        c3d_rank = sorted_indices.index(category_id) + 1
+        out.write("{0}_{1:05d}, {2}\n".format(video_id, start_frame, c3d_rank))
     out.close()
-
 
 if __name__ == "__main__":
     main()

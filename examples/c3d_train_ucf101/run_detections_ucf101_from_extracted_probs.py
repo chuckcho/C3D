@@ -121,12 +121,15 @@ def read_binary_feature(file):
     f = open(file, "rb") # read binary data
     s = f.read() # read all bytes into a string
     f.close()
+
     (n, c, l, h, w) = array.array("i", s[:20])
     feature = np.array(array.array("f", s[20:]))
 
     # sanity check: checks!
+    #print "n={},c={},l={},h={},w={}".format(n,c,l,h,w)
     #sum_feature = np.sum(feature)
     #print "sum_feature={}".format(sum_feature)
+    #print "feature={}".format(np.squeeze(feature))
 
     return feature
 
@@ -141,6 +144,7 @@ def main():
 
     # read test video list
     test_video_list = '../c3d_finetuning/test_01.lst'
+    #test_video_list = './test_54pct_accuracy.lst'
     import csv
     reader = csv.reader(open(test_video_list), delimiter=" ")
 
@@ -164,11 +168,12 @@ def main():
 
         avg_pred = read_binary_feature(feature_file)
         #print "avg_pred.shape={}".format(avg_pred.shape)
+        print "sum(avg_pred)={}".format(sum(avg_pred))
 
-        sorted_indices = sorted(range(len(avg_pred)), key=lambda k: avg_pred[k])
+        sorted_indices = sorted(range(len(avg_pred)), key=lambda k: -avg_pred[k])
         print "-"*5
         for x in range(top_N):
-            index = sorted_indices[-x-1]
+            index = sorted_indices[x]
             prob = round(avg_pred[index]*100,10)
             if category.lower() == ucf_categories[index].lower():
                 hit_or_miss = '!!!!!!!!!!!!!!!  hit !!!!!!!!!!!!!!!'
@@ -176,7 +181,7 @@ def main():
                 hit_or_miss = ''
             print "[Info] GT:{}, c3d detected:{} (p={}%): {}".format(category, ucf_categories[index], prob, hit_or_miss)
 
-        c3d_rank = len(ucf_categories) - sorted_indices.index(category_id)
+        c3d_rank = sorted_indices.index(category_id)+1
 
         out.write("{0}_{1:05d}, {2}\n".format(video_id, start_frame, c3d_rank))
 
