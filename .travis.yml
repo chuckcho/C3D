@@ -2,10 +2,8 @@
 # one using CMake, and one using make.
 env:
   matrix:
-    - WITH_CUDA=false WITH_IO=true
-    - WITH_CUDA=true WITH_IO=true
-    - WITH_CUDA=false WITH_IO=false
-    - WITH_CUDA=false WITH_IO=false PYTHON_VERSION=3
+    - WITH_CUDA=true
+    - WITH_CUDA=false PYTHON_VERSION=3
 
 language: cpp
 
