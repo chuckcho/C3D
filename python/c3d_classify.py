@@ -61,10 +61,10 @@ def c3d_classify(
                               rgb_f_5[...,np.newaxis]), axis=4)
     else:
         rgb_3 = rgb[8:120, 30:142, :,:]
-        rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
-        rgb = np.concatenate((rgb_3[...,np.newaxis],
-                              rgb_f_3[...,np.newaxis]), axis=4)
-        #rgb = rgb_3[...,np.newaxis]
+        #rgb_f_3 = rgb_flip[8:120, 30:142, :,:]
+        #rgb = np.concatenate((rgb_3[...,np.newaxis],
+        #                      rgb_f_3[...,np.newaxis]), axis=4)
+        rgb = rgb_3[...,np.newaxis]
 
     prediction = np.zeros((num_categories,rgb.shape[4]))
 
