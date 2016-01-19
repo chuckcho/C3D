@@ -267,8 +267,7 @@ def _Net_preprocess(self, input_name, input_):
         caffe_in *= input_scale
     if channel_order:
         caffe_in = caffe_in[:, :, channel_order]
-    #caffe_in = caffe_in.transpose((2, 0, 1))
-    caffe_in = caffe_in.transpose((2, 1, 0))
+    caffe_in = caffe_in.transpose((2, 0, 1))
     if mean is not None:
         caffe_in -= mean
     return caffe_in

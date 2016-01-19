@@ -195,6 +195,7 @@ def main():
                     image_mean=image_mean,
                     net=net,
                     start_frame=start_frame,
+                    image_resize_dim = (128,171),
                     prob_layer=prob_layer,
                     multi_crop=False
                     )
@@ -211,7 +212,7 @@ def main():
         for x in range(top_N):
             index = sorted_indices[x]
             prob = round(avg_pred[index]*100,10)
-            if category.lower() == ucf_categories[index].lower():
+            if category_id == index:
                 hit_or_miss = '!!!!!!!!!!!!!!!  hit !!!!!!!!!!!!!!!'
             else:
                 hit_or_miss = ''
