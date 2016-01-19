@@ -10,11 +10,11 @@ layers {
     use_image: true
     mean_file: "ucf101_train_mean.binaryproto"
     #mean_file: "../c3d_finetuning/train01_16_128_171_mean.binaryproto"
-    batch_size: 30
+    batch_size: 50
     #batch_size: 2
     crop_size: 112
     mirror: false
-    show_data: 0
+    show_data: 1
     new_height: 128
     new_width: 171
     new_length: 16

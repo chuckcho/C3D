@@ -139,7 +139,7 @@ def main():
     out = open(output_file, "w", bufsize)
 
     # model
-    model_def_file = 'conv3d_ucf101_test.prototxt'
+    model_def_file = 'conv3d_ucf101_deploy.prototxt'
     model_file = 'conv3d_ucf101_iter_50000'
     #mean_file = 'ucf101_train_mean.npy'
     mean_file = './ucf101_train_mean.binaryproto'
@@ -149,6 +149,7 @@ def main():
     gpu_id = 0
     net.set_device(gpu_id)
     net.set_mode_gpu()
+    #net.set_mode_cpu()
     net.set_phase_test()
     #net.set_mean('data', '../python/caffe/imagenet/ilsvrc_2012_mean.npy')
     #net.set_channel_swap('data', (2,1,0))
@@ -161,7 +162,7 @@ def main():
     reader = csv.reader(open(test_video_list), delimiter=" ")
 
     # top_N
-    top_N = 5
+    top_N = 3
 
     # network param
     prob_layer = 'prob'
