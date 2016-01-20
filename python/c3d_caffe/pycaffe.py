@@ -7,8 +7,8 @@ from collections import OrderedDict
 from itertools import izip_longest
 import numpy as np
 
-from ._caffe import Net, SGDSolver
-import caffe.io
+from ._c3d_caffe import Net, SGDSolver
+import c3d_caffe.io
 
 # We directly update methods from Net here (rather than using composition or
 # inheritance) so that nets created by caffe (e.g., by SGDSolver) will
@@ -184,7 +184,6 @@ def _Net_set_mean(self, input_, mean_f, mode='elementwise'):
     input_: which input to assign this mean.
     mean_f: path to mean .npy with ndarray (input dimensional or broadcastable)
     mode: elementwise = use the whole mean (and check dimensions)
-          channel = channel constant (e.g. mean pixel instead of mean image)
     """
     if not hasattr(self, 'mean'):
         self.mean = {}
@@ -193,17 +192,15 @@ def _Net_set_mean(self, input_, mean_f, mode='elementwise'):
     in_shape = self.blobs[input_].data.shape
     mean = np.load(mean_f)
     if mode == 'elementwise':
-        if mean.shape != in_shape[1:]:
+        if mean.shape != in_shape[2:]:
             # Resize mean (which requires H x W x K input in range [0,1]).
             m_min, m_max = mean.min(), mean.max()
             normal_mean = (mean - m_min) / (m_max - m_min)
-            mean = caffe.io.resize_image(normal_mean.transpose((1,2,0)),
-                    in_shape[2:]).transpose((2,0,1)) * (m_max - m_min) + m_min
+            mean = c3d_caffe.io.resize_image(normal_mean.transpose((2,3,0,1)),
+                    in_shape[3:]).transpose((2,3,0,1)) * (m_max - m_min) + m_min
         self.mean[input_] = mean
-    elif mode == 'channel':
-        self.mean[input_] = mean.mean(1).mean(1).reshape((in_shape[1], 1, 1))
     else:
-        raise Exception('Mode not in {}'.format(['elementwise', 'channel']))
+        raise Exception('Mode not elementwise')
 
 
 
@@ -247,27 +244,27 @@ def _Net_preprocess(self, input_name, input_):
     - scale feature
     - reorder channels (for instance color to BGR)
     - subtract mean
-    - transpose dimensions to K x H x W
+    - transpose dimensions to K x L X H x W (L: c3d_depth)
 
     Take
     input_name: name of input blob to preprocess for
-    input_: (H' x W' x K) ndarray
+    input_: (H' x W' x K X L) ndarray
 
     Give
-    caffe_inputs: (K x H x W) ndarray
+    caffe_inputs: (K x L X H x W) ndarray
     """
     caffe_in = input_.astype(np.float32)
     input_scale = self.input_scale.get(input_name)
     channel_order = self.channel_swap.get(input_name)
     mean = self.mean.get(input_name)
-    in_size = self.blobs[input_name].data.shape[2:]
+    in_size = self.blobs[input_name].data.shape[3:]
     if caffe_in.shape[:2] != in_size:
-        caffe_in = caffe.io.resize_image(caffe_in, in_size)
+        caffe_in = c3d_caffe.io.resize_image(caffe_in, in_size)
     if input_scale:
         caffe_in *= input_scale
     if channel_order:
-        caffe_in = caffe_in[:, :, channel_order]
-    caffe_in = caffe_in.transpose((2, 0, 1))
+        caffe_in = caffe_in[:, :, channel_order, :]
+    caffe_in = caffe_in.transpose((2, 3, 0, 1))
     if mean is not None:
         caffe_in -= mean
     return caffe_in
@@ -283,11 +280,11 @@ def _Net_deprocess(self, input_name, input_):
     mean = self.mean.get(input_name)
     if mean is not None:
         decaf_in += mean
-    decaf_in = decaf_in.transpose((1,2,0))
+    decaf_in = decaf_in.transpose((2,3,0,1))
     if channel_order:
         channel_order_inverse = [channel_order.index(i)
                                  for i in range(decaf_in.shape[2])]
-        decaf_in = decaf_in[:, :, channel_order_inverse]
+        decaf_in = decaf_in[:, :, channel_order_inverse, :]
     if input_scale:
         decaf_in /= input_scale
     return decaf_in

@@ -10,7 +10,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template<>
 void caffe_cpu_gemm<float>(const CBLAS_TRANSPOSE TransA,
@@ -324,7 +324,7 @@ void caffe_rng_uniform(const int n, const Dtype a, const Dtype b, Dtype* r) {
   CHECK(r);
   CHECK_LE(a, b);
   boost::uniform_real<Dtype> random_distribution(a, caffe_nextafter<Dtype>(b));
-  boost::variate_generator<caffe::rng_t*, boost::uniform_real<Dtype> >
+  boost::variate_generator<c3d_caffe::rng_t*, boost::uniform_real<Dtype> >
       variate_generator(caffe_rng(), random_distribution);
   for (int i = 0; i < n; ++i) {
     r[i] = variate_generator();
@@ -346,7 +346,7 @@ void caffe_rng_gaussian(const int n, const Dtype a,
   CHECK(r);
   CHECK_GT(sigma, 0);
   boost::normal_distribution<Dtype> random_distribution(a, sigma);
-  boost::variate_generator<caffe::rng_t*, boost::normal_distribution<Dtype> >
+  boost::variate_generator<c3d_caffe::rng_t*, boost::normal_distribution<Dtype> >
       variate_generator(caffe_rng(), random_distribution);
   for (int i = 0; i < n; ++i) {
     r[i] = variate_generator();
@@ -368,7 +368,7 @@ void caffe_rng_bernoulli(const int n, const Dtype p, int* r) {
   CHECK_GE(p, 0);
   CHECK_LE(p, 1);
   boost::bernoulli_distribution<Dtype> random_distribution(p);
-  boost::variate_generator<caffe::rng_t*, boost::bernoulli_distribution<Dtype> >
+  boost::variate_generator<c3d_caffe::rng_t*, boost::bernoulli_distribution<Dtype> >
       variate_generator(caffe_rng(), random_distribution);
   for (int i = 0; i < n; ++i) {
     r[i] = variate_generator();
@@ -477,4 +477,4 @@ void caffe_gpu_scale<double>(const int n, const double alpha, const double *x,
   CUBLAS_CHECK(cublasDscal(Caffe::cublas_handle(), n, &alpha, y, 1));
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

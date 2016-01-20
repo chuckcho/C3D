@@ -30,7 +30,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/image_io.hpp"
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 
 template<typename Dtype>
 int feature_extraction_pipeline(int argc, char** argv);

@@ -8,7 +8,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 const float kBNLL_THRESHOLD = 50.;
 
@@ -62,4 +62,4 @@ void BNLLLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(BNLLLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

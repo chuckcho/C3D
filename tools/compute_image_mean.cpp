@@ -10,8 +10,8 @@
 #include "caffe/proto/caffe.pb.h"
 #include "caffe/util/io.hpp"
 
-using caffe::Datum;
-using caffe::BlobProto;
+using c3d_caffe::Datum;
+using c3d_caffe::BlobProto;
 using std::max;
 
 int main(int argc, char** argv) {

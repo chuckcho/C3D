@@ -15,7 +15,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -70,4 +70,4 @@ TYPED_TEST(HingeLossLayerTest, TestGradientGPU) {
       &(this->blob_top_vec_), 0, -1, -1);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

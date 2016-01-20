@@ -20,7 +20,7 @@ using std::pair;
 //   'source' field specifies the window_file
 //   'crop_size' indicates the desired warped size
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype WindowDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -41,4 +41,4 @@ Dtype WindowDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(WindowDataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

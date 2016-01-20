@@ -11,7 +11,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 using std::vector;
 
 template <typename Dtype>
@@ -46,4 +46,4 @@ void HDF5OutputLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(HDF5OutputLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

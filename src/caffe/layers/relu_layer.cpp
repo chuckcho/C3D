@@ -8,7 +8,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype ReLULayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
@@ -41,4 +41,4 @@ void ReLULayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(ReLULayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -41,7 +41,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void* VideoDataLayerPrefetch(void* layer_pointer) {
@@ -398,7 +398,7 @@ void VideoDataLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
     data_mean_.Reshape(1, datum_channels_, datum_length_, datum_height_, datum_width_);
     if (this->layer_param_.image_data_param().has_mean_value()){
     	LOG(INFO) << "Using mean value of " << this->layer_param_.image_data_param().mean_value();
-    	caffe::caffe_set(data_mean_.count(), (Dtype)this->layer_param_.image_data_param().mean_value(),
+    	c3d_caffe::caffe_set(data_mean_.count(), (Dtype)this->layer_param_.image_data_param().mean_value(),
     				(Dtype*)data_mean_.mutable_cpu_data());
     }
   }
@@ -443,8 +443,8 @@ void VideoDataLayer<Dtype>::JoinPrefetchThread() {
 template <typename Dtype>
 unsigned int VideoDataLayer<Dtype>::PrefetchRand() {
   CHECK(prefetch_rng_);
-  caffe::rng_t* prefetch_rng =
-      static_cast<caffe::rng_t*>(prefetch_rng_->generator());
+  c3d_caffe::rng_t* prefetch_rng =
+      static_cast<c3d_caffe::rng_t*>(prefetch_rng_->generator());
   return (*prefetch_rng)();
 }
 
@@ -467,4 +467,4 @@ Dtype VideoDataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(VideoDataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

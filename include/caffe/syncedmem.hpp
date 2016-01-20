@@ -7,7 +7,7 @@
 
 #include "caffe/common.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 // Theoretically, CaffeMallocHost and CaffeFreeHost should simply call the
 // cudaMallocHost and cudaFree functions in order to create pinned memory.
@@ -62,6 +62,6 @@ class SyncedMemory {
   DISABLE_COPY_AND_ASSIGN(SyncedMemory);
 };  // class SyncedMemory
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_SYNCEDMEM_HPP_

@@ -15,7 +15,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 class PaddingLayerUpgradeTest : public ::testing::Test {
  protected:
@@ -2434,4 +2434,4 @@ TEST_F(V0UpgradeTest, TestImageNet) {
   this->RunV0UpgradeTest(input_proto, expected_output_proto);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

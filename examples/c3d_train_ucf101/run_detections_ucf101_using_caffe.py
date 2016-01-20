@@ -7,9 +7,9 @@ import json
 
 import sys
 sys.path.append("/home/chuck/projects/C3D/python")
-import caffe
+import c3d_caffe
 
-from c3d_classify import c3d_classify
+from c3d_caffe.c3d_classify import c3d_classify
 
 def get_ucf_categories():
     category = [

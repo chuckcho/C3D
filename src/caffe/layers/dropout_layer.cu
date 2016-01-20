@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 template <typename Dtype>
@@ -75,4 +75,4 @@ void DropoutLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(DropoutLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

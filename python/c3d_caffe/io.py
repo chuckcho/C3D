@@ -2,7 +2,7 @@ import numpy as np
 import skimage.io
 import skimage.transform
 
-from caffe.proto import caffe_pb2
+from c3d_caffe.proto import caffe_pb2
 
 
 def load_image(filename):

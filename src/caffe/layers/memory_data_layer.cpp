@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void MemoryDataLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -49,4 +49,4 @@ Dtype MemoryDataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(MemoryDataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

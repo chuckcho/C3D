@@ -10,7 +10,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 // Return true iff any layer contains parameters specified using
 // deprecated V0LayerParameter.
@@ -44,6 +44,6 @@ void ReadNetParamsFromTextFileOrDie(const string& param_file,
 void ReadNetParamsFromBinaryFileOrDie(const string& param_file,
                                       NetParameter* param);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif   // CAFFE_UTIL_UPGRADE_PROTO_H_

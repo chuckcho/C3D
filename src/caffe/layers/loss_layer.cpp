@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void LossLayer<Dtype>::SetUp(
@@ -30,4 +30,4 @@ void LossLayer<Dtype>::SetUp(
 
 INSTANTIATE_CLASS(LossLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -6,7 +6,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/rng.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 shared_ptr<Caffe> Caffe::singleton_;
 
@@ -117,11 +117,11 @@ void Caffe::DeviceQuery() {
 
 class Caffe::RNG::Generator {
  public:
-  Generator() : rng_(new caffe::rng_t(cluster_seedgen())) {}
-  explicit Generator(unsigned int seed) : rng_(new caffe::rng_t(seed)) {}
-  caffe::rng_t* rng() { return rng_.get(); }
+  Generator() : rng_(new c3d_caffe::rng_t(cluster_seedgen())) {}
+  explicit Generator(unsigned int seed) : rng_(new c3d_caffe::rng_t(seed)) {}
+  c3d_caffe::rng_t* rng() { return rng_.get(); }
  private:
-  shared_ptr<caffe::rng_t> rng_;
+  shared_ptr<c3d_caffe::rng_t> rng_;
 };
 
 Caffe::RNG::RNG() : generator_(new Generator) { }
@@ -193,4 +193,4 @@ const char* curandGetErrorString(curandStatus_t error) {
   return "Unknown curand status";
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

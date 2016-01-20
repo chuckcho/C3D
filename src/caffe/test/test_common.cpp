@@ -9,7 +9,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 class CommonTest : public ::testing::Test {};
 
@@ -63,4 +63,4 @@ TEST_F(CommonTest, TestRandSeedGPU) {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

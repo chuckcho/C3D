@@ -7,7 +7,7 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class Blob {
@@ -134,6 +134,6 @@ class Blob {
   DISABLE_COPY_AND_ASSIGN(Blob);
 };  // class Blob
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_BLOB_HPP_

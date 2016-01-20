@@ -9,7 +9,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void SoftmaxLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -87,4 +87,4 @@ void SoftmaxLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(SoftmaxLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

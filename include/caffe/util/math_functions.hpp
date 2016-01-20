@@ -11,7 +11,7 @@
 
 #include "caffe/util/mkl_alternate.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 // Decaf gemm provides a simpler interface to the gemm functions, with the
 // limitation that the data has to be contiguous in memory.
@@ -239,7 +239,7 @@ void caffe_cpu_scale(const int n, const Dtype alpha, const Dtype *x, Dtype* y);
 template <typename Dtype>
 void caffe_gpu_scale(const int n, const Dtype alpha, const Dtype *x, Dtype* y);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 
 #endif  // CAFFE_UTIL_MATH_FUNCTIONS_H_

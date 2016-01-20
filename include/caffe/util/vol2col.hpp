@@ -19,7 +19,7 @@
 #define VOL2COL_HPP_
 
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void vol2col_cpu(const Dtype* data_im, const int channels, const int length,
@@ -41,7 +41,7 @@ void col2vol_gpu(const Dtype* data_col, const int channels, const int length,
 	    const int height, const int width, const int ksize, const int kdepth, const int pad,
 	    const int temporal_pad, const int stride, const int temporal_stride, Dtype* data_im);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 
 #endif /* VOL2COL_HPP_ */

@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void EuclideanLossLayer<Dtype>::FurtherSetUp(
@@ -55,4 +55,4 @@ void EuclideanLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(EuclideanLossLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

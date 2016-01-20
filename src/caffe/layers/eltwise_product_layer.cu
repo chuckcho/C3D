@@ -6,7 +6,7 @@
 #include "caffe/vision_layers.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype EltwiseProductLayer<Dtype>::Forward_gpu(
@@ -39,4 +39,4 @@ void EltwiseProductLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(EltwiseProductLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

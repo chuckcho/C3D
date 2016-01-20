@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class Solver {
@@ -71,6 +71,6 @@ class SGDSolver : public Solver<Dtype> {
 };
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_OPTIMIZATION_SOLVER_HPP_

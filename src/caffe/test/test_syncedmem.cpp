@@ -10,7 +10,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 class SyncedMemoryTest : public ::testing::Test {};
 
@@ -87,4 +87,4 @@ TEST_F(SyncedMemoryTest, TestGPUWrite) {
   EXPECT_EQ(mem.head(), SyncedMemory::SYNCED);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

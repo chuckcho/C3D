@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void AccuracyLayer<Dtype>::SetUp(
@@ -64,4 +64,4 @@ Dtype AccuracyLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(AccuracyLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

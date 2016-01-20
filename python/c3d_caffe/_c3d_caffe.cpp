@@ -24,7 +24,7 @@
 #endif
 
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 using boost::python::extract;
 using boost::python::len;
 using boost::python::list;
@@ -310,7 +310,7 @@ class CaffeSGDSolver {
 
 
 // The boost_python module definition.
-BOOST_PYTHON_MODULE(_caffe) {
+BOOST_PYTHON_MODULE(_c3d_caffe) {
   // below, we prepend an underscore to methods that will be replaced
   // in Python
   boost::python::class_<CaffeNet, shared_ptr<CaffeNet> >(

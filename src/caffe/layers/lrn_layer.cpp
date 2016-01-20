@@ -6,7 +6,7 @@
 #include "caffe/vision_layers.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void LRNLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -263,4 +263,4 @@ void LRNLayer<Dtype>::WithinChannelBackward(
 INSTANTIATE_CLASS(LRNLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

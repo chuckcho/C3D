@@ -16,7 +16,7 @@
 
 using std::isnan;
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -253,4 +253,4 @@ TYPED_TEST(PowerLayerTest, TestPowerTwoScaleHalfGradientGPU) {
   this->TestBackward(power, scale, shift);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

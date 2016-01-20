@@ -32,7 +32,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void* VolumeDataLayerPrefetch(void* layer_pointer);

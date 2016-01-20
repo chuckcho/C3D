@@ -10,7 +10,7 @@
 
 #include "caffe/caffe.hpp"
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 
 int main(int argc, char** argv) {
   ::google::InitGoogleLogging(argv[0]);

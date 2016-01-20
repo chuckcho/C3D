@@ -19,7 +19,7 @@ TODO:
 #include "caffe/util/io.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 HDF5DataLayer<Dtype>::~HDF5DataLayer<Dtype>() { }
@@ -122,4 +122,4 @@ void HDF5DataLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(HDF5DataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -47,7 +47,7 @@ using google::protobuf::io::CodedOutputStream;
 using google::protobuf::Message;
 
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 void ImageToBuffer(const cv::Mat* img, char* buffer){

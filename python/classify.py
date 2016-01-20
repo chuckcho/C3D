@@ -11,7 +11,7 @@ import argparse
 import glob
 import time
 
-import caffe
+import c3d_caffe
 
 
 def main(argv):

@@ -10,7 +10,7 @@
 
 using std::vector;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class Layer {
@@ -133,6 +133,6 @@ void Layer<Dtype>::ToProto(LayerParameter* param, bool write_diff) {
 template <typename Dtype>
 Layer<Dtype>* GetLayer(const LayerParameter& param);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_LAYER_H_

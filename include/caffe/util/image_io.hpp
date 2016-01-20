@@ -34,7 +34,7 @@
 using std::string;
 using ::google::protobuf::Message;
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 void ImageToBuffer(const cv::Mat* img, char* buffer);
@@ -74,7 +74,7 @@ inline bool save_blob_to_binary(Blob<Dtype>* blob, const string fn_blob){
 }
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 
 #endif /* IMAGE_IO_HPP_ */

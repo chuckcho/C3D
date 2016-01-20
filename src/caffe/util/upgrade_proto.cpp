@@ -15,7 +15,7 @@
 using std::map;
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 bool NetNeedsUpgrade(const NetParameter& net_param) {
   for (int i = 0; i < net_param.layers_size(); ++i) {
@@ -612,4 +612,4 @@ void ReadNetParamsFromBinaryFileOrDie(const string& param_file,
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

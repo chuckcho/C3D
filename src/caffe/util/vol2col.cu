@@ -22,7 +22,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/vol2col.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 template <typename Dtype>
@@ -149,4 +149,4 @@ template void col2vol_gpu<double>(const double* data_col, const int channels, co
     const int height, const int width, const int ksize, const int kdepth, const int pad,
     const int temporal_pad, const int stride, const int temporal_stride, double* data_im);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

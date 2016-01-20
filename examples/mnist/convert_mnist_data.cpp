@@ -68,7 +68,7 @@ void convert_dataset(const char* image_filename, const char* label_filename,
   char key[kMaxKeyLength];
   std::string value;
 
-  caffe::Datum datum;
+  c3d_caffe::Datum datum;
   datum.set_channels(1);
   datum.set_height(rows);
   datum.set_width(cols);

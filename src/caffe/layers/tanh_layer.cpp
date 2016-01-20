@@ -8,7 +8,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype TanHLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
@@ -45,4 +45,4 @@ void TanHLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(TanHLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

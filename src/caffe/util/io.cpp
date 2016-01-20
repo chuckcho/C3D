@@ -31,7 +31,7 @@ using google::protobuf::io::ZeroCopyOutputStream;
 using google::protobuf::io::CodedOutputStream;
 using google::protobuf::Message;
 
-namespace caffe {
+namespace c3d_caffe {
 
 bool ReadProtoFromTextFile(const char* filename, Message* proto) {
   int fd = open(filename, O_RDONLY);
@@ -177,4 +177,4 @@ void hdf5_save_nd_dataset<double>(
   CHECK_GE(status, 0) << "Failed to make double dataset " << dataset_name;
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

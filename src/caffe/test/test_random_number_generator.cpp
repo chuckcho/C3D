@@ -10,7 +10,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class RandomNumberGeneratorTest : public ::testing::Test {
@@ -516,4 +516,4 @@ TYPED_TEST(RandomNumberGeneratorTest, TestRngUniformTimesUniformGPU) {
 }
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -5,10 +5,10 @@ Classifier is an image classifier specialization of Net.
 
 import numpy as np
 
-import caffe
+import c3d_caffe
 
 
-class Classifier(caffe.Net):
+class Classifier(c3d_caffe.Net):
     """
     Classifier extends Net for image class prediction
     by scaling, center cropping, or oversampling.
@@ -22,7 +22,7 @@ class Classifier(caffe.Net):
         gpu, mean_file, input_scale, channel_swap: convenience params for
             setting mode, mean, input scale, and channel order.
         """
-        caffe.Net.__init__(self, model_file, pretrained_file)
+        c3d_caffe.Net.__init__(self, model_file, pretrained_file)
         self.set_phase_test()
 
         if gpu:
@@ -57,12 +57,12 @@ class Classifier(caffe.Net):
                      for N images and C classes.
         """
         # Scale to standardize input dimensions.
-        inputs = np.asarray([caffe.io.resize_image(im, self.image_dims)
+        inputs = np.asarray([c3d_caffe.io.resize_image(im, self.image_dims)
                              for im in inputs])
 
         if oversample:
             # Generate center, corner, and mirrored crops.
-            inputs = caffe.io.oversample(inputs, self.crop_dims)
+            inputs = c3d_caffe.io.oversample(inputs, self.crop_dims)
         else:
             # Take center crop.
             center = np.array(self.image_dims) / 2.0

@@ -8,7 +8,7 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void Blob<Dtype>::Reshape(const int num, const int channels, const int length, const int height,
@@ -227,5 +227,5 @@ void Blob<Dtype>::ToProto(BlobProto* proto, bool write_diff) const {
 
 INSTANTIATE_CLASS(Blob);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 

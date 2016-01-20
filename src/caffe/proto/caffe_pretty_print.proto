@@ -1,6 +1,6 @@
 // Copyright 2014 BVLC and contributors.
 
-package caffe;
+package c3d_caffe;
 
 import "caffe/proto/caffe.proto";
 

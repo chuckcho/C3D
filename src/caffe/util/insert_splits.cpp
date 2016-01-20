@@ -13,7 +13,7 @@ using std::ostringstream;
 using std::pair;
 using std::make_pair;
 
-namespace caffe {
+namespace c3d_caffe {
 
 void InsertSplits(const NetParameter& param, NetParameter* param_split) {
   // Initialize by copying from the input NetParameter.
@@ -125,4 +125,4 @@ string SplitBlobName(const string& layer_name, const string& blob_name,
   return split_blob_name.str();
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -14,7 +14,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template<typename Dtype>
 class MathFunctionsTest : public ::testing::Test {
@@ -227,4 +227,4 @@ TYPED_TEST(MathFunctionsTest, TestCopyGPU) {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe
