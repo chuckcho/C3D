@@ -176,7 +176,7 @@ def _Net_forward_backward_all(self, blobs=None, diffs=None, **kwargs):
     return all_outs, all_diffs
 
 
-def _Net_set_mean(self, input_, mean_f, mode='elementwise'):
+def _Net_set_mean(self, input_, mean_f):
     """
     Set the mean to subtract for data centering.
 
@@ -191,17 +191,17 @@ def _Net_set_mean(self, input_, mean_f, mode='elementwise'):
         raise Exception('Input not in {}'.format(self.inputs))
     in_shape = self.blobs[input_].data.shape
     mean = np.load(mean_f)
-    if mode == 'elementwise':
-        if mean.shape != in_shape[2:]:
-            # Resize mean (which requires H x W x K input in range [0,1]).
-            m_min, m_max = mean.min(), mean.max()
-            normal_mean = (mean - m_min) / (m_max - m_min)
-            mean = c3d_caffe.io.resize_image(normal_mean.transpose((2,3,0,1)),
-                    in_shape[3:]).transpose((2,3,0,1)) * (m_max - m_min) + m_min
-        self.mean[input_] = mean
-    else:
-        raise Exception('Mode not elementwise')
-
+    if mean.ndim == 5:
+        mean = np.squeeze(mean, 0)
+    if mean.shape != in_shape[1:]:
+        # Resize mean (which requires H x W x K input in range [0,1]).
+        m_min, m_max = mean.min(), mean.max()
+        normal_mean = (mean - m_min) / (m_max - m_min)
+        ''' [info] normal_mean.shape=(16, 3, 128, 171),in_shape=(1, 3, 16, 112, 112) '''
+        mean = c3d_caffe.io.resize_image(
+                normal_mean.transpose((2,3,0,1)),
+                in_shape[3:]).transpose((2,3,0,1)) * (m_max - m_min) + m_min
+    self.mean[input_] = mean
 
 
 def _Net_set_input_scale(self, input_, scale):
