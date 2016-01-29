@@ -10,7 +10,7 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void DropoutLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -64,4 +64,4 @@ void DropoutLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(DropoutLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

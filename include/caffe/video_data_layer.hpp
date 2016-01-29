@@ -32,7 +32,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void* VideoDataLayerPrefetch(void* layer_pointer);

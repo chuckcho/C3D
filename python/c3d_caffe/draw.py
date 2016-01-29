@@ -6,7 +6,7 @@ since it requires graphviz and other prerequisites outside the scope of the
 Caffe.
 """
 
-from caffe.proto import caffe_pb2
+from c3d_caffe.proto import caffe_pb2
 from google.protobuf import text_format
 import pydot
 

@@ -30,7 +30,7 @@
 #include "caffe/data_layers.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class Pooling3DLayer : public Layer<Dtype> {

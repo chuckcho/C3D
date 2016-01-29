@@ -6,14 +6,14 @@
 #include <boost/random/mersenne_twister.hpp>
 #include "caffe/common.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
   typedef boost::mt19937 rng_t;
 
   inline rng_t* caffe_rng() {
-    return static_cast<caffe::rng_t*>(Caffe::rng_stream().generator());
+    return static_cast<c3d_caffe::rng_t*>(Caffe::rng_stream().generator());
   }
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_RNG_HPP_

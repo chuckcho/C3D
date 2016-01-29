@@ -16,7 +16,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 // A function to get a specific layer from the specification given in
@@ -106,6 +106,6 @@ Layer<Dtype>* GetLayer(const LayerParameter& param) {
 template Layer<float>* GetLayer(const LayerParameter& param);
 template Layer<double>* GetLayer(const LayerParameter& param);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_LAYER_FACTORY_HPP_

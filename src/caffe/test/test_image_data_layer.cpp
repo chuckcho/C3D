@@ -19,7 +19,7 @@
 using std::map;
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -145,4 +145,4 @@ TYPED_TEST(ImageDataLayerTest, TestShuffle) {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

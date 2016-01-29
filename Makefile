@@ -6,8 +6,8 @@ include $(CONFIG_FILE)
 
 # The target static library and shared library name
 LIB_BUILD_DIR := $(BUILD_DIR)/lib
-NAME := $(LIB_BUILD_DIR)/lib$(PROJECT).so
-STATIC_NAME := $(LIB_BUILD_DIR)/lib$(PROJECT).a
+NAME := $(LIB_BUILD_DIR)/lib_c3d_$(PROJECT).so
+STATIC_NAME := $(LIB_BUILD_DIR)/lib_c3d_$(PROJECT).a
 
 ##############################
 # Get all source files
@@ -43,7 +43,7 @@ PROTO_BUILD_INCLUDE_DIR := $(BUILD_INCLUDE_DIR)/$(PROJECT)/proto
 NONGEN_CXX_SRCS := $(shell find \
 	src/$(PROJECT) \
 	include/$(PROJECT) \
-	python/$(PROJECT) \
+	python/c3d_$(PROJECT) \
 	matlab/$(PROJECT) \
 	examples \
 	tools \
@@ -51,8 +51,8 @@ NONGEN_CXX_SRCS := $(shell find \
 LINT_REPORT := $(BUILD_DIR)/cpp_lint.log
 FAILED_LINT_REPORT := $(BUILD_DIR)/cpp_lint.error_log
 # PY$(PROJECT)_SRC is the python wrapper for $(PROJECT)
-PY$(PROJECT)_SRC := python/$(PROJECT)/_$(PROJECT).cpp
-PY$(PROJECT)_SO := python/$(PROJECT)/_$(PROJECT).so
+PY$(PROJECT)_SRC := python/c3d_$(PROJECT)/_c3d_$(PROJECT).cpp
+PY$(PROJECT)_SO := python/c3d_$(PROJECT)/_c3d_$(PROJECT).so
 # MAT$(PROJECT)_SRC is the matlab wrapper for $(PROJECT)
 MAT$(PROJECT)_SRC := matlab/$(PROJECT)/mat$(PROJECT).cpp
 ifneq ($(MATLAB_DIR),)
@@ -70,8 +70,8 @@ PROTO_GEN_HEADER := $(addprefix $(PROTO_BUILD_INCLUDE_DIR)/, \
 		$(notdir ${PROTO_SRCS:.proto=.pb.h}))
 HXX_SRCS += $(PROTO_GEN_HEADER)
 PROTO_GEN_CC := $(addprefix $(BUILD_DIR)/, ${PROTO_SRCS:.proto=.pb.cc})
-PY_PROTO_BUILD_DIR := python/$(PROJECT)/proto
-PY_PROTO_INIT := python/$(PROJECT)/proto/__init__.py
+PY_PROTO_BUILD_DIR := python/c3d_$(PROJECT)/proto
+PY_PROTO_INIT := python/c3d_$(PROJECT)/proto/__init__.py
 PROTO_GEN_PY := $(foreach file,${PROTO_SRCS:.proto=_pb2.py}, \
 		$(PY_PROTO_BUILD_DIR)/$(notdir $(file)))
 # The objects corresponding to the source files
@@ -364,7 +364,10 @@ $(PROTO_BUILD_DIR)/%.pb.cc $(PROTO_BUILD_DIR)/%.pb.h : \
 $(PY_PROTO_BUILD_DIR)/%_pb2.py : $(PROTO_SRC_DIR)/%.proto \
 		$(PY_PROTO_INIT) | $(PY_PROTO_BUILD_DIR)
 	protoc --proto_path=src --python_out=python $<
-	@ echo
+	@ echo && \
+	mkdir -p python/c3d_$(PROJECT)/proto && \
+	mv python/$(PROJECT)/proto/* $(PY_PROTO_BUILD_DIR)/ && \
+	$(RM) -rf python/$(PROJECT)
 
 $(PY_PROTO_INIT): | $(PY_PROTO_BUILD_DIR)
 	touch $(PY_PROTO_INIT)

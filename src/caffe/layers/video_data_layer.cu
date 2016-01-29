@@ -28,7 +28,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype VideoDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -51,4 +51,4 @@ Dtype VideoDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(VideoDataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

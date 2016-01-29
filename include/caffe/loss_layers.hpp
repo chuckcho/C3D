@@ -18,7 +18,7 @@
 #include "caffe/neuron_layers.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 const float kLOG_THRESHOLD = 1e-20;
 
@@ -166,6 +166,6 @@ class AccuracyLayer : public Layer<Dtype> {
 - SoftmaxWithLossLayer in vision_layers.hpp
 */
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_LOSS_LAYERS_HPP_

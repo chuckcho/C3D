@@ -9,7 +9,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void PowerLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -102,4 +102,4 @@ void PowerLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(PowerLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

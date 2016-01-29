@@ -17,7 +17,7 @@ using std::pair;
 using std::map;
 using std::set;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Net<Dtype>::Net(const NetParameter& param) {
@@ -410,4 +410,4 @@ const shared_ptr<Layer<Dtype> > Net<Dtype>::layer_by_name(
 
 INSTANTIATE_CLASS(Net);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

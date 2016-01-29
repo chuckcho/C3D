@@ -15,7 +15,7 @@
 using std::max;
 using std::min;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Solver<Dtype>::Solver(const SolverParameter& param)
@@ -309,4 +309,4 @@ void SGDSolver<Dtype>::RestoreSolverState(const SolverState& state) {
 INSTANTIATE_CLASS(Solver);
 INSTANTIATE_CLASS(SGDSolver);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

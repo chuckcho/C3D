@@ -10,7 +10,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void SigmoidCrossEntropyLossLayer<Dtype>::FurtherSetUp(
@@ -62,4 +62,4 @@ void SigmoidCrossEntropyLossLayer<Dtype>::Backward_cpu(
 INSTANTIATE_CLASS(SigmoidCrossEntropyLossLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

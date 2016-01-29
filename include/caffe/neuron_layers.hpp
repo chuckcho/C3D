@@ -20,7 +20,7 @@
 #define HDF5_DATA_DATASET_NAME "data"
 #define HDF5_DATA_LABEL_NAME "label"
 
-namespace caffe {
+namespace c3d_caffe {
 
 /* NeuronLayer
   An interface for layers that take one blob as input (x),
@@ -202,6 +202,6 @@ class TanHLayer : public NeuronLayer<Dtype> {
       const bool propagate_down, vector<Blob<Dtype>*>* bottom);
 };
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_NEURON_LAYERS_HPP_

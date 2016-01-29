@@ -14,7 +14,7 @@
 
 #include "caffe/caffe.hpp"
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 
 int main(int argc, char** argv) {
   if (argc < 4 || argc > 6) {

@@ -29,8 +29,8 @@
 #include "caffe/util/image_io.hpp"
 #include "caffe/util/io.hpp"
 
-using caffe::VolumeDatum;
-using caffe::BlobProto;
+using c3d_caffe::VolumeDatum;
+using c3d_caffe::BlobProto;
 using std::max;
 
 int main(int argc, char** argv) {

@@ -8,7 +8,7 @@
 #include "gtest/gtest.h"
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -50,4 +50,4 @@ TEST_F(PlatformTest, TestInitialization) {
   EXPECT_TRUE(true);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -5,8 +5,8 @@ Draw a graph of the net architecture.
 import os
 from google.protobuf import text_format
 
-import caffe, caffe.draw
-from caffe.proto import caffe_pb2
+import c3d_caffe, c3d_caffe.draw
+from c3d_caffe.proto import caffe_pb2
 
 
 def main(argv):
@@ -17,7 +17,7 @@ def main(argv):
         net = caffe_pb2.NetParameter()
         text_format.Merge(open(sys.argv[1]).read(), net)
         print 'Drawing net to %s' % sys.argv[2]
-        caffe.draw.draw_net_to_file(net, sys.argv[2])
+        c3d_caffe.draw.draw_net_to_file(net, sys.argv[2])
 
 
 if __name__ == '__main__':

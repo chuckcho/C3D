@@ -16,7 +16,7 @@ using std::map;
 using std::vector;
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 template <typename Dtype>
@@ -140,6 +140,6 @@ class Net {
 };
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_NET_HPP_

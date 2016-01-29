@@ -41,7 +41,7 @@ void convert_dataset(const string& input_folder, const string& output_folder) {
   int label;
   char str_buffer[kCIFARImageNBytes];
   string value;
-  caffe::Datum datum;
+  c3d_caffe::Datum datum;
   datum.set_channels(3);
   datum.set_height(kCIFARSize);
   datum.set_width(kCIFARSize);

@@ -15,7 +15,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class Filler {
@@ -168,6 +168,6 @@ Filler<Dtype>* GetFiller(const FillerParameter& param) {
   return (Filler<Dtype>*)(NULL);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_FILLER_HPP_

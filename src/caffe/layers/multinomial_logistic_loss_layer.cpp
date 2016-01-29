@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void MultinomialLogisticLossLayer<Dtype>::FurtherSetUp(
@@ -57,4 +57,4 @@ void MultinomialLogisticLossLayer<Dtype>::Backward_cpu(
 
 INSTANTIATE_CLASS(MultinomialLogisticLossLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

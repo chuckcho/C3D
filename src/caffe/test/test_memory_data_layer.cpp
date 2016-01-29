@@ -6,7 +6,7 @@
 #include "caffe/vision_layers.hpp"
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 class MemoryDataLayerTest : public ::testing::Test {
@@ -111,4 +111,4 @@ TYPED_TEST(MemoryDataLayerTest, TestForward) {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

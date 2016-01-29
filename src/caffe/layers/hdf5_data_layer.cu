@@ -17,7 +17,7 @@ TODO:
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype HDF5DataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -61,4 +61,4 @@ void HDF5DataLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(HDF5DataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

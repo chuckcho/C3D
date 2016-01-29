@@ -15,7 +15,7 @@
 #include "caffe/data_layers.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 /*
 ConcatLayer
@@ -404,6 +404,6 @@ class SplitLayer : public Layer<Dtype> {
   int count_;
 };
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_VISION_LAYERS_HPP_

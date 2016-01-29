@@ -9,7 +9,7 @@
 #include "caffe/test/test_caffe_main.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 class ProtoTest : public ::testing::Test {};
 
@@ -26,4 +26,4 @@ TEST_F(ProtoTest, TestSerialization) {
   EXPECT_TRUE(true);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

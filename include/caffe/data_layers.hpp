@@ -17,7 +17,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace c3d_caffe {
 
 #define HDF5_DATA_DATASET_NAME "data"
 #define HDF5_DATA_LABEL_NAME "label"
@@ -217,6 +217,6 @@ class WindowDataLayer : public Layer<Dtype> {
   vector<vector<float> > bg_windows_;
 };
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_DATA_LAYERS_HPP_

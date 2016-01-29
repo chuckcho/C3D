@@ -16,7 +16,7 @@
 
 using std::min;
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -165,4 +165,4 @@ TYPED_TEST(StochasticPoolingLayerTest, TestGradientGPU) {
 
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

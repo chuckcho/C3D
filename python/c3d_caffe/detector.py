@@ -20,10 +20,10 @@ TODO
 import numpy as np
 import os
 
-import caffe
+import c3d_caffe
 
 
-class Detector(caffe.Net):
+class Detector(c3d_caffe.Net):
     """
     Detector extends Net for windowed detection by a list of crops or
     selective search proposals.
@@ -35,7 +35,7 @@ class Detector(caffe.Net):
         gpu, mean_file, input_scale, channel_swap: convenience params for
             setting mode, mean, input scale, and channel order.
         """
-        caffe.Net.__init__(self, model_file, pretrained_file)
+        c3d_caffe.Net.__init__(self, model_file, pretrained_file)
         self.set_phase_test()
 
         if gpu:
@@ -66,7 +66,7 @@ class Detector(caffe.Net):
         # Extract windows.
         window_inputs = []
         for image_fname, windows in images_windows:
-            image = caffe.io.load_image(image_fname).astype(np.float32)
+            image = c3d_caffe.io.load_image(image_fname).astype(np.float32)
             for window in windows:
                 window_inputs.append(image[window[0]:window[2],
                                            window[1]:window[3]])

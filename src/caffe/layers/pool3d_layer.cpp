@@ -28,7 +28,7 @@
 using std::max;
 using std::min;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void Pooling3DLayer<Dtype>::SetUp(const vector<Blob<Dtype>*>& bottom,
@@ -260,4 +260,4 @@ void Pooling3DLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(Pooling3DLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

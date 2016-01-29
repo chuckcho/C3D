@@ -17,7 +17,7 @@ using ::google::protobuf::Message;
 
 #define HDF5_NUM_DIMS 4
 
-namespace caffe {
+namespace c3d_caffe {
 
 bool ReadProtoFromTextFile(const char* filename, Message* proto);
 
@@ -82,6 +82,6 @@ template <typename Dtype>
 void hdf5_save_nd_dataset(
   const hid_t file_id, const string dataset_name, const Blob<Dtype>& blob);
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif   // CAFFE_UTIL_IO_H_

@@ -7,7 +7,7 @@
 #include "caffe/common.hpp"
 #include "caffe/syncedmem.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 SyncedMemory::~SyncedMemory() {
   if (cpu_ptr_ && own_cpu_data_) {
@@ -94,5 +94,5 @@ void* SyncedMemory::mutable_gpu_data() {
 }
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 

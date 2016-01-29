@@ -19,7 +19,7 @@
 using std::string;
 using std::pair;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype ImageDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -40,4 +40,4 @@ Dtype ImageDataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(ImageDataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

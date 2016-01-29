@@ -15,7 +15,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 // The gradient checker adds a L2 normalization loss function on top of the
 // top blobs, and checks the gradient.
@@ -244,6 +244,6 @@ Dtype GradientChecker<Dtype>::GetObjAndGradient(vector<Blob<Dtype>*>* top,
   return loss;
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_TEST_GRADIENT_CHECK_UTIL_H_

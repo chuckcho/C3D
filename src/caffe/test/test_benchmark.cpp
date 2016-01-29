@@ -8,7 +8,7 @@
 #include "caffe/util/benchmark.hpp"
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -166,4 +166,4 @@ TEST_F(BenchmarkTest, TestTimerSecondsGPU) {
   EXPECT_TRUE(timer.has_run_at_least_once());
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

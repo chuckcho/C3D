@@ -6,7 +6,7 @@
 
 #include "caffe/util/im2col.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void im2col_cpu(const Dtype* data_im, const int channels,
@@ -73,4 +73,4 @@ template void col2im_cpu<double>(const double* data_col, const int channels,
     const int height, const int width, const int psize, const int pad,
     const int stride, double* data_im);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

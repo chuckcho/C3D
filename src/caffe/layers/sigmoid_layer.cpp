@@ -7,7 +7,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 inline Dtype sigmoid(Dtype x) {
@@ -45,4 +45,4 @@ void SigmoidLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(SigmoidLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

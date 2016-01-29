@@ -22,7 +22,7 @@
 #include "caffe/filler.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype Convolution3DLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -121,4 +121,4 @@ void Convolution3DLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(Convolution3DLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

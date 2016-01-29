@@ -6,7 +6,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/benchmark.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 Timer::Timer()
     : initted_(false),
@@ -77,4 +77,4 @@ void Timer::Init() {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

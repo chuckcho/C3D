@@ -11,7 +11,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 __global__ void set_kernel(const int n, const Dtype alpha, Dtype* y) {
@@ -229,4 +229,4 @@ void caffe_gpu_rng_gaussian(const int n, const double mu, const double sigma,
       curandGenerateNormalDouble(Caffe::curand_generator(), r, n, mu, sigma));
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 __global__ void kernel_get_max(const int num, const int dim,
@@ -109,4 +109,4 @@ void SoftmaxLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(SoftmaxLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

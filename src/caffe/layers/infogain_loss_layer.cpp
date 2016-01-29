@@ -12,7 +12,7 @@
 
 using std::max;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void InfogainLossLayer<Dtype>::FurtherSetUp(
@@ -73,4 +73,4 @@ void InfogainLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(InfogainLossLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

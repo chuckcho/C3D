@@ -8,7 +8,7 @@
 #include "caffe/filler.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 Dtype ConvolutionLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -101,4 +101,4 @@ void ConvolutionLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(ConvolutionLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

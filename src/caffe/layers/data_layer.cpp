@@ -15,7 +15,7 @@
 
 using std::string;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 void* DataLayerPrefetch(void* layer_pointer) {
@@ -253,8 +253,8 @@ void DataLayer<Dtype>::JoinPrefetchThread() {
 template <typename Dtype>
 unsigned int DataLayer<Dtype>::PrefetchRand() {
   CHECK(prefetch_rng_);
-  caffe::rng_t* prefetch_rng =
-      static_cast<caffe::rng_t*>(prefetch_rng_->generator());
+  c3d_caffe::rng_t* prefetch_rng =
+      static_cast<c3d_caffe::rng_t*>(prefetch_rng_->generator());
   return (*prefetch_rng)();
 }
 
@@ -277,4 +277,4 @@ Dtype DataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(DataLayer);
 
-}  // namespace caffe
+}  // namespace c3d_caffe

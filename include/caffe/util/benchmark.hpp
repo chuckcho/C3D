@@ -6,7 +6,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <cuda_runtime.h>
 
-namespace caffe {
+namespace c3d_caffe {
 
 class Timer {
  public:
@@ -34,6 +34,6 @@ class Timer {
   float elapsed_milliseconds_;
 };
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif   // CAFFE_UTIL_BENCHMARK_H_

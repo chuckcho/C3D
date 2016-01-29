@@ -16,7 +16,7 @@
 using std::string;
 using std::stringstream;
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -534,4 +534,4 @@ TYPED_TEST(DataLayerTest, TestReadCropTestGPU) {
   }
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

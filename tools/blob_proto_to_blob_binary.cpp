@@ -29,7 +29,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/image_io.hpp"
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 
 int main(int argc, char** argv) {
 	BlobProto blob_proto;

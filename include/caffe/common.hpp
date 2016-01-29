@@ -37,14 +37,14 @@ private:\
   do { \
     cublasStatus_t status = condition; \
     CHECK_EQ(status, CUBLAS_STATUS_SUCCESS) << " " \
-      << caffe::cublasGetErrorString(status); \
+      << c3d_caffe::cublasGetErrorString(status); \
   } while (0)
 
 #define CURAND_CHECK(condition) \
   do { \
     curandStatus_t status = condition; \
     CHECK_EQ(status, CURAND_STATUS_SUCCESS) << " " \
-      << caffe::curandGetErrorString(status); \
+      << c3d_caffe::curandGetErrorString(status); \
   } while (0)
 
 // CUDA: grid stride looping
@@ -61,7 +61,7 @@ private:\
 #define CUBLAS_STATUS_NOT_SUPPORTED 831486
 #endif
 
-namespace caffe {
+namespace c3d_caffe {
 
 // We will use the boost shared_ptr instead of the new C++11 one mainly
 // because cuda does not work (at least now) well with C++11 features.
@@ -164,6 +164,6 @@ inline int CAFFE_GET_BLOCKS(const int N) {
 }
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe
 
 #endif  // CAFFE_COMMON_HPP_

@@ -8,7 +8,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 typedef ::testing::Types<float, double> Dtypes;
 
@@ -146,4 +146,4 @@ TYPED_TEST(GaussianFillerTest, TestFill) {
   EXPECT_LE(var, target_var * 5.);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

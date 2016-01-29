@@ -11,7 +11,7 @@
 using std::max;
 using std::min;
 
-namespace caffe {
+namespace c3d_caffe {
 
 template <typename Dtype>
 __global__ void MaxPoolForward(const int nthreads, const Dtype* bottom_data,
@@ -327,4 +327,4 @@ void PoolingLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_CLASS(PoolingLayer);
 
 
-}  // namespace caffe
+}  // namespace c3d_caffe

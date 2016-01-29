@@ -5,11 +5,11 @@
 
 #include "test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
   cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 }
 
-using caffe::CAFFE_TEST_CUDA_PROP;
+using c3d_caffe::CAFFE_TEST_CUDA_PROP;
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

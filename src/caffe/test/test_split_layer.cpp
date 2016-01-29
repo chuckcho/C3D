@@ -16,7 +16,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 extern cudaDeviceProp CAFFE_TEST_CUDA_PROP;
 
@@ -948,4 +948,4 @@ TEST_F(SplitLayerInsertionTest, TestWithInPlace) {
   this->RunInsertionTest(input_proto, expected_output_proto);
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

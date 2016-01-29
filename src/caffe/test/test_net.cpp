@@ -12,7 +12,7 @@
 
 #include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace c3d_caffe {
 
 
 template <typename Dtype>
@@ -133,4 +133,4 @@ TYPED_TEST(NetTest, TestGetLayerByName) {
   EXPECT_FALSE(net.layer_by_name("label"));
 }
 
-}  // namespace caffe
+}  // namespace c3d_caffe

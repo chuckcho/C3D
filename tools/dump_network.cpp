@@ -25,7 +25,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/solver.hpp"
 
-using namespace caffe;  // NOLINT(build/namespaces)
+using namespace c3d_caffe;  // NOLINT(build/namespaces)
 
 int main(int argc, char** argv) {
   Caffe::set_mode(Caffe::GPU);
