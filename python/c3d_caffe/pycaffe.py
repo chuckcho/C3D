@@ -191,16 +191,13 @@ def _Net_set_mean(self, input_, mean_f):
         raise Exception('Input not in {}'.format(self.inputs))
     in_shape = self.blobs[input_].data.shape
     mean = np.load(mean_f)
-    if mean.ndim == 5:
+    if mean.ndim == 5 and mean.shape[0] == 1:
         mean = np.squeeze(mean, 0)
     if mean.shape != in_shape[1:]:
-        # Resize mean (which requires H x W x K input in range [0,1]).
-        m_min, m_max = mean.min(), mean.max()
-        normal_mean = (mean - m_min) / (m_max - m_min)
         ''' [info] normal_mean.shape=(16, 3, 128, 171),in_shape=(1, 3, 16, 112, 112) '''
         mean = c3d_caffe.io.resize_image(
-                normal_mean.transpose((2,3,0,1)),
-                in_shape[3:]).transpose((2,3,0,1)) * (m_max - m_min) + m_min
+                mean.transpose((2,3,0,1)),
+                in_shape[3:]).transpose((2,3,0,1))
     self.mean[input_] = mean
 
 
