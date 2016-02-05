@@ -3,7 +3,8 @@
 env:
   matrix:
     - WITH_CUDA=true
-    - WITH_CUDA=false PYTHON_VERSION=3
+      # it seems this old fork of caffe doesn't have CPU_ONLY flag
+      #    - WITH_CUDA=false PYTHON_VERSION=3
 
 language: cpp
 
