@@ -14,6 +14,8 @@ echo -e '\n' >> ./c3d_dextro_benchmark_log_2016_02_04.txt
 
 ../../build/tools/train_net.bin \
   ./c3d_dextro_benchmark_solver_2016_02_04.prototxt \
-  ./c3d_dextro_benchmark_2016_02_04_iter_5000.solverstate \
+  ./c3d_dextro_benchmark_2016_02_05_iter_50000.solverstate \
   2>&1 \
   | tee -a ./c3d_dextro_benchmark_log_2016_02_04.txt
+
+#  ./c3d_dextro_benchmark_2016_02_04_iter_5000.solverstate \
