@@ -23,3 +23,7 @@ INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
 LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
 WITH_PYTHON_LAYER := 1
 EOF
+
+# change opencv3 libs to opencv2 ones
+sed -i 's/opencv_videoio//' Makefile
+sed -i 's/opencv_imgcodecs//' Makefile
