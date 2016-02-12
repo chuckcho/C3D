@@ -291,16 +291,9 @@ def main():
     save_all_num_segs = True
 
     # intermediate files
-    train_val_file_dir = \
-            '/home/chuck/projects/C3D/examples/c3d_train_dextro_benchmark'
-    train_file = os.path.join(
-            train_val_file_dir,
-            'dextro_benchmark_2016_02_03_train_c3d.txt'
-            )
-    val_file = os.path.join(
-            train_val_file_dir,
-            'dextro_benchmark_2016_02_03_val_c3d.txt'
-            )
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    train_file = os.path.join(cwd, 'dextro_benchmark_2016_02_03_train_c3d.txt')
+    val_file = os.path.join(cwd, 'dextro_benchmark_2016_02_03_val_c3d.txt')
 
     random.seed('cerealkiller')
     # 4 means 4:1 = training samples:testing samples
@@ -314,7 +307,8 @@ def main():
     frame_margin = 2
 
     # number of frames for stride
-    stride = c3d_len / 2
+    #stride = c3d_len / 2 #-> takes forever for training/testing!
+    stride = c3d_len
 
     # only save content_type mapping and exit
     save_content_type_mapping_only = False
@@ -522,8 +516,6 @@ def main():
         val_file_obj.close()
 
     if save_all_num_segs:
-
-        cwd = os.path.dirname(os.path.realpath(__file__))
 
         # save number of video samples per content_type
         all_num_videos_file = os.path.join(

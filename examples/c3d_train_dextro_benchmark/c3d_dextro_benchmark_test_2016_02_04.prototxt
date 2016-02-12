@@ -9,9 +9,8 @@ layers {
     use_image: false
     mean_file: "train01_16_128_171_mean.binaryproto"
     use_temporal_jitter: false
-    #batch_size: 30
-    #batch_size: 2
-    batch_size: 2
+    #batch_size: 25
+    batch_size: 10
     crop_size: 112
     mirror: false
     show_data: 0
