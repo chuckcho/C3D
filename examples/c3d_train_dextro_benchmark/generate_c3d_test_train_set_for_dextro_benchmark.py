@@ -314,7 +314,7 @@ def main():
     save_content_type_mapping_only = False
 
     # minimum number of videos per content_type
-    min_num_videos_per_content_type = 370
+    #min_num_videos_per_content_type = 5
 
     if not os.path.isfile(train_file) or overwrite_train_val_file:
         save_train_val_files = True
