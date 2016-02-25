@@ -8,13 +8,17 @@ MAKE="make --jobs=$NUM_THREADS --keep-going"
 if ! $WITH_CUDA; then
   export CPU_ONLY=1
 fi
-$MAKE all test pycaffe lint || true
+#$MAKE all test pycaffe warn lint || true
+$MAKE all test py || true
 if ! $WITH_CUDA; then
   $MAKE runtest
 fi
 $MAKE all
 $MAKE test
-$MAKE pycaffe
-if ! $WITH_CUDA; then
-  $MAKE lint
-fi
+#$MAKE pycaffe
+#$MAKE pytest
+$MAKE py
+#$MAKE warn
+#if ! $WITH_CUDA; then
+#  $MAKE lint
+#fi
