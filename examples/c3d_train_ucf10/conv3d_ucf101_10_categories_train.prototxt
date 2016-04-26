@@ -7,7 +7,7 @@ layers {
   image_data_param {
     source: "train_01_10_categories.lst"
     use_image: true
-    mean_file: "../c3d_train_/ucf101_train_mean.binaryproto"
+    mean_file: "../c3d_train_ucf101/ucf101_train_mean.binaryproto"
     batch_size: 8
     crop_size: 112
     mirror: true
