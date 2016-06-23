@@ -8,7 +8,7 @@ layers {
     source: "test_01_10_categories.lst"
     use_image: true
     mean_file: "../c3d_train_ucf101/ucf101_train_mean.binaryproto"
-    batch_size: 4
+    batch_size: 3
     crop_size: 112
     mirror: false
     show_data: 0
