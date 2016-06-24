@@ -13,8 +13,8 @@ VIDEODIR=/media/6TB/Videos/youtube-dog-videos-for-demo-2016-Jun
 
 GLOG_logtosterr=1 \
   ../../build/tools/extract_image_features.bin \
-  prototxt/c3d_youtube_demo_feature_extractor.prototxt \
+  prototxt/c3d_youtube_demo_feature_extractor3.prototxt \
   conv3d_deepnetA_sport1m_iter_1900000 \
   0 80 10000000 \
-  prototxt/youtube_demo_output_list_video_prefix.txt \
+  prototxt/youtube_demo_output_list_video_prefix3.txt \
   fc7-1 fc6-1 prob

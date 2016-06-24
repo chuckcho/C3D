@@ -1,19 +1,18 @@
-#!/usr/bin/env bash
-
 youtubedir=/media/6TB/Videos/youtube-dog-videos-for-demo-2016-Jun
 #ls ${youtubedir}/*.avi | xargs -I {} ffmpeg -i {} -vcodec copy -acodec copy -f null /dev/null 2>&1 | grep 'frame=' | awk '{print $2}'
-inputfile=/home/chuck/projects/C3D/examples/c3d_feature_extraction/prototxt/youtube_demo_input_list_video.txt
-outputfile=/home/chuck/projects/C3D/examples/c3d_feature_extraction/prototxt/youtube_demo_output_list_video_prefix.txt
+inputfile=/home/chuck/projects/C3D/examples/c3d_feature_extraction/prototxt/youtube_demo_input_list_video3.txt
+outputfile=/home/chuck/projects/C3D/examples/c3d_feature_extraction/prototxt/youtube_demo_output_list_video_prefix3.txt
 outdir=${youtubedir}/C3D_features
 
 numframesc3d=16
-
 minframenum=30
 
 rm -f $inputfile $outputfile
 rm -rf $outdir/*
 
-FILES=${youtubedir}/*.mp4
+#FILES=${youtubedir}/*.mp4
+#FILES=${youtubedir}/D-8mSt6yQuE.mp4
+FILES=${youtubedir}/ZW-NoV5cVsM.mp4
 for f in $FILES
 do
   basef="${f##*/}"
